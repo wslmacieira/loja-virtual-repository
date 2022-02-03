@@ -15,6 +15,8 @@ public class Connectionfactory {
         comboPooledDataSource.setUser("root");
         comboPooledDataSource.setPassword("root");
 
+        comboPooledDataSource.setMaxConnectionAge(15);
+
         this.dataSource = comboPooledDataSource;
     }
 
