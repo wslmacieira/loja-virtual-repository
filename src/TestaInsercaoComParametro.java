@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import factory.ConnectionFactory;
+
 public class TestaInsercaoComParametro {
     public static void main(String[] args) throws SQLException {
-        Connectionfactory factory = new Connectionfactory();
+        ConnectionFactory factory = new ConnectionFactory();
         try (Connection connection = factory.recuperarConexao()) {
 
             connection.setAutoCommit(false);

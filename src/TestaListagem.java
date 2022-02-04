@@ -3,10 +3,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import factory.ConnectionFactory;
+
 public class TestaListagem {
     public static void main(String[] args) throws SQLException{
         
-        Connectionfactory criaConexao = new Connectionfactory();
+        ConnectionFactory criaConexao = new ConnectionFactory();
         Connection con = criaConexao.recuperarConexao();
        
         PreparedStatement stm = con.prepareStatement("SELECT ID, NOME, DESCRICAO FROM produto");

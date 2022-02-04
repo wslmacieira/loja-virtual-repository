@@ -2,10 +2,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import factory.ConnectionFactory;
+
 public class TestaRemocao {
     public static void main(String[] args) throws SQLException {
 
-        Connectionfactory factory = new Connectionfactory();
+        ConnectionFactory factory = new ConnectionFactory();
         Connection connection = factory.recuperarConexao();
 
         PreparedStatement stm = connection.prepareStatement("delete from produto where ID > ?");
