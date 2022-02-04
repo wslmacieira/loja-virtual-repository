@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.Categoria;
 import modelo.Produto;
 
 public class ProdutoDAO {
@@ -36,7 +37,7 @@ public class ProdutoDAO {
     }
 
     public List<Produto> listar() throws SQLException {
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
 
         String sql = "select id, nome, descricao from produto";
 
@@ -54,4 +55,26 @@ public class ProdutoDAO {
 
         return produtos;
     }
+
+    public List<Produto> buscar(Categoria ct) throws SQLException {
+        List<Produto> produtos = new ArrayList<>();
+
+        String sql = "select id, nome, descricao from produto where categoria_id = ?";
+
+        try(PreparedStatement pstm = connection.prepareStatement(sql)) {
+            pstm.setInt(1, ct.getId());
+            pstm.execute();
+
+            try(ResultSet rst = pstm.getResultSet()) {
+                while (rst.next()) {
+                    Produto produto =
+                        new Produto(rst.getInt(1), rst.getString(2), rst.getString(3));
+                        produtos.add(produto);
+                }
+            }
+        }
+
+        return produtos;
+    }
+
 }
